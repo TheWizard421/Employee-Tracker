@@ -1,0 +1,21 @@
+{
+  "name": "challenge",
+  "version": "1.0.0",
+  "description": "To create a CMS Interface for a Manager to use for Employees and the departments they work at.",
+  "main": "index.js",
+  "dependencies": {
+    "console.table": "^0.10.0",
+    "inquirer": "^8.2.0",
+    "mysql2": "^2.3.2"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/TheWizard421?tab=repositories"
+  },
+  "author": "Iain Milliken",
+  "license": "ISC"
+}
