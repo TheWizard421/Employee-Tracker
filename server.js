@@ -195,16 +195,16 @@ const mainMenu = () => {
         else if (response.general_program === 'View all Employees') {
             viewAllEmployees()
          } 
-        else if (response.general_program === 'add a department') {
+        else if (response.general_program === 'Add a Department') {
             addDepartment()
         }
-        else if (response.general_program === 'add a role') {
+        else if (response.general_program === 'Add a Role') {
             addRole()
         }
-        else if (response.general_program === 'add a employee') {
+        else if (response.general_program === 'Add a Employee') {
             addEmployee()
         }
-        else if (response.general_program === 'Update an employee') {
+        else if (response.general_program === 'Update an Employee') {
             otherWay()
         }
     })
