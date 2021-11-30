@@ -29,9 +29,9 @@ SO THAT I can organize and plan my business
   TheWizard421
 
   ## Questions
-  [iainmilliken@gmail.com](mailto:iainmilliken@gmail.com)
+  Email: [iainmilliken@gmail.com](mailto:iainmilliken@gmail.com)
 
-  [TheWizard421](https://github.com/TheWizard421)
+  GitHub: [TheWizard421](https://github.com/TheWizard421)
 
   ## License
   [![License](https://img.shields.io/badge/License-MIT-Green.svg)](#)
