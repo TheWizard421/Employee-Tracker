@@ -16,12 +16,12 @@ CREATE TABLE role (
   FOREIGN KEY (department_id) REFERENCES department(id)
 );
 
-CREATE TABLE emlpoyee (
+CREATE TABLE employee (
   id int NOT NULL AUTO_INCREMENT PRIMARY KEY,
   first_name varchar(30) NOT NULL,
   last_name varchar(30) NOT NULL,
   role_id int(10) NOT NULL, 
-  manager_id int(10),
+  manager_id int(10) DEFAULT NULL,   
   FOREIGN KEY (role_id) REFERENCES role(id),
-  FOREIGN KEY (manager_id) REFERENCES emlpoyee(id)
+  FOREIGN KEY (manager_id) REFERENCES employee(id)
 );

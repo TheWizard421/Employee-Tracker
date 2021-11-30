@@ -21,7 +21,7 @@ const questions = [
     type:"list",
     name:"general_program",
     message:"What would you like to do?",
-    choices:["View All Departments","View all roles", "view all employees", "add a department", "add a role", "add an employee", "and update an employee role"]
+    choices:["View All Departments","View all Roles", "View all Employees", "Add a Department", "Add a Role", "Add a Employee", "Update an Employee"]
 }]
 //view All Departments, 
 const viewAllDepartments = () => {
@@ -33,11 +33,13 @@ const viewAllDepartments = () => {
 const viewAllRoles = () => {
     db.query ('SELECT * FROM Role', function(err, results){
         console.table(results)
+        mainMenu(); 
 })};
 // view all employees, 
 const viewAllEmployees = () => {
     db.query ('SELECT * FROM employee', function(err, results){
         console.table(results)
+        mainMenu();
 })};
 // add a department, 
 const addDepartment = () => {
@@ -45,7 +47,7 @@ const addDepartment = () => {
         type: 'input',
         name: 'Department',
         message: 'Please Enter Department Name'
-    }).then((response)=>{
+    }).then((response)=> {
         db.query ('INSERT INTO department (name) VALUES (?);', response.Department, (err)=>{
             if(err){
                 throw err
@@ -60,36 +62,43 @@ const addDepartment = () => {
 const addRole = () => {
     db.query ('SELECT * FROM department', function(err, results){
         if (err){ throw err }
-        else {inquirer.prompt([
-            {
-                type: 'list',
-                name: 'Department',
-                message: 'Please select a Department to add an employee role!',
-            choices(){
-                var arr = [];
-                for (var i = 0; i < results.length; i++){
-                    arr.push(results[i].name);
-                }
-                return arr;
-            }},
-            {
-                type: 'input',
-                name: 'Salary',
-                message: 'Please enter a Salary ($)'
-            },
-            {
-                type: 'input',
-                name: 'Jobtitle',
-                message: 'Please enter Job Title'
-            }
-        ])
-        .then((response) => 
+        else {   
+                inquirer.prompt([
+                    {
+                        type: 'list',
+                        name: 'Department',
+                        message: 'Please select a Department to add an employee role!',
+                        choices() {
+                            var arr = [];
+                            for (var i = 0; i < results.length; i++){
+                                arr.push(results[i].name);
+                            }
+                            return arr;
+                            
+                            }
+                    },
+                    {
+                        type: 'input',
+                        name: 'Salary',
+                        message: 'Please enter a Salary ($)'
+                    },
+                    {
+                        type: 'input',
+                        name: 'Jobtitle',
+                        message: 'Please enter Job Title'
+                    }
+                ])
+        .then((response) => {
+            
+            console.log('line hit')
+
             db.query (`SELECT id FROM department WHERE name=?`, response.Department, (err, data) => {
             if (err) {
                 throw err
             } else {
                 db.query ('INSERT INTO role (department_id, salary, title) VALUES (?,?,?)', [data[0].id, response.Salary, response.Jobtitle])
-        }}))
+                mainMenu();
+        }})})
     }})};
 //add an employee, 
 const addEmployee = () => {
@@ -128,7 +137,8 @@ const addEmployee = () => {
                 if (err) {
                     throw err
                 } else {
-                    db.query ('INSERT INTO employee (first_name, last_name, role_id, manager_id) VALUES (?, ?, ?)', [response.fname, response.lname, data[0].id, response.managerid])
+                    console.log (typeof response.managerid)
+                    db.query ('INSERT INTO employee (first_name, last_name, role_id, manager_id) VALUES (?, ?, ?, ?)', [response.fname, response.lname, data[0].id, parseInt(response.managerid)])
         }})
     })}
 })};
